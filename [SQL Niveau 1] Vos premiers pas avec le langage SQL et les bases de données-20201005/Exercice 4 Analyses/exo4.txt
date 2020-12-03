@@ -1,0 +1,73 @@
+Exo 1:
+
+INSERT INTO `client` (codeClient, nom, cpclient, villeclient, tel)
+VALUES
+("a1", "Marine", "06460", "Escragnolles", "0645612378"),
+("a2", "Paul", "60453", "Nice", "0712345612"),
+("a3", "Remy", "06000", "Grasse", "0678945632"),
+("a4", "Alain", "83000", "Mons", "0785274196"),
+("a5", "Claire", "06660", "Saint-vallier", "0663214789")
+
+INSERT INTO echantillon (codeEchantillon, dateEntree, codeClient)
+VALUES
+(1, '2020-02-25', "a1"),
+(2, '2019-06-14', "a2"),
+(3, '2020-02-07', "a3"),
+(4, '2020-01-01', "a4"),
+(5, '2020-06-10', "a5")
+
+INSERT INTO typeanalyse (designation, prixTypeAnalyse)
+VALUES
+("type1", 50.50),
+("type2", 10.50),
+("type3", 40.50)
+
+INSERT INTO realiser (codeEchantillon, refTypeAnalyse, dateRealisation)
+VALUES
+(1, 2, '2019-06-04'),
+(2, 3, '2018-07-13'),
+(3, 3, '2020-12-14'),
+(4, 1, '2020-01-24'),
+(5, 1, '2018-10-04')
+
+Exo 2:
+UPDATE typeanalyse
+SET prixTypeAnalyse = prixTypeAnalyse * 1.1
+
+Exo 3:
+UPDATE typeanalyse
+SET prixTypeAnalyse = 80
+WHERE prixTypeAnalyse < 80
+
+Exo 4:
+UPDATE realiser
+SET dateRealisation = DATE(NOW())
+WHERE dateRealisation IS NULL
+
+Exo 5:
+UPDATE `client`
+SET tel = "0611111111"
+WHERE codeClient = "c1"
+
+Exo 6:
+UPDATE echantillon
+SET dateEntree = '2006-02-01'
+WHERE dateEntree = '2007-02-01'
+
+Exo 7:
+CREATE TABLE IF NOT EXISTS `analyseColysterol` (
+  `refTypeAnalyse` int(8) NOT NULL AUTO_INCREMENT,
+  `designation` varchar(50) DEFAULT NULL,
+  `prixTypeAnalyse` float DEFAULT NULL,
+  PRIMARY KEY (`refTypeAnalyse`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO analyseColysterol (designation, prixTypeAnalyse)
+VALUES
+("typeC1", 120.50),
+("typeC2", 80.50),
+("typeC3", 40.50)
+
+INSERT INTO typeanalyse (designation, prixTypeAnalyse)
+SELECT designation,prixTypeAnalyse
+FROM analyseColysterol

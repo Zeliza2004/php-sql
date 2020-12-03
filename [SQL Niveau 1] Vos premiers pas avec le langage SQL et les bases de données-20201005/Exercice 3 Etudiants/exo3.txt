@@ -1,0 +1,69 @@
+Exo 1:
+SELECT *
+FROM etudiant
+ORDER BY date_naissance ASC
+
+Exo 2:
+SELECT *
+FROM etudiant
+WHERE niveau = 'M1' OR niveau = 'M2'
+
+Exo 3:
+SELECT matricule
+FROM examen
+WHERE `code` = '002' AND note >= 10
+
+Exo 4:
+SELECT matricule
+FROM examen
+WHERE (`code` = '002' OR `code` = '001') AND note >= 10
+
+Exo 5:
+SELECT matricule, `code`, note AS `note/20`, note *2 AS `note/40`
+FROM examen
+ORDER BY matricule, `code` ASC
+
+Exo 6:
+SELECT AVG(note)
+FROM examen
+WHERE code = 002
+
+Exo 7:
+SELECT COUNT(*)
+FROM examen
+WHERE matricule = 'e001'
+
+Exo 8:
+SELECT COUNT(*)
+FROM examen
+WHERE `code` = 002 AND note >= 10
+
+Exo 9:
+SELECT AVG(note)
+FROM examen
+WHERE matricule = 'e001'
+
+Exo 10:
+SELECT etudiant.nom, COUNT(*)
+FROM examen, etudiant
+WHERE etudiant.matricule = examen.matricule AND note >= 10
+GROUP BY etudiant.matricule
+
+Exo 11:
+SELECT etudiant.nom, AVG(note)
+FROM examen, etudiant
+WHERE examen.matricule = etudiant.matricule
+GROUP BY etudiant.nom
+
+Exo 12:
+SELECT etudiant.nom, AVG(note) AS moy
+FROM examen, etudiant
+WHERE examen.matricule = etudiant.matricule 
+GROUP BY etudiant.matricule
+HAVING moy >= 15
+
+Exo 13:
+SELECT cours.nom_cours, AVG(note)
+FROM examen, cours
+WHERE cours.`code`= examen.`code`
+GROUP BY cours.`code
